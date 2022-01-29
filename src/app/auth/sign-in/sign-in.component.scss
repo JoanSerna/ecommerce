@@ -1,0 +1,29 @@
+
+.container {
+  --card-width: 262px;
+  width: 50vw;
+  height: 100vh;
+  background-color: #3f51b5;
+  color: #fff;
+
+  .sign-in {
+    width: calc(100% + var(--card-width) / 2);
+    height: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    &__card {
+      text-align: center;
+      width: var(--card-width);
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 2rem;
+    }
+  }
+
+}

@@ -1,0 +1,36 @@
+<div class="container">
+  <section class="sign-in">
+    <nz-card nzTitle="Iniciar sesión" *ngIf="signInForm" class="sign-in__card">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="signInForm"
+            class="sign-in__form"
+            (ngSubmit)="submitSignInForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor ingresa tu correo!">
+            <nz-input-group nzPrefixIcon="user">
+              <input formControlName="email" nz-input placeholder="Correo" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor ingresa tu contraseña!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input formControlName="password" nz-input type="password"
+                     placeholder="Contraseña" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzType="primary"
+                    [disabled]="!signInForm.valid">Iniciar sesión
+            </button>
+
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <a [routerLink]="['/auth','sign-up']">Registro!</a>
+        </nz-form-item>
+      </form>
+    </nz-card>
+  </section>
+</div>
