@@ -12,22 +12,43 @@ import es from '@angular/common/locales/es';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { StoreEffects } from './store/store.effects';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot({}, {
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictActionTypeUniqueness: true,
+        strictActionWithinNgZone: true,
+        strictStateImmutability: true,
+        strictStateSerializability: true,
+      },
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([StoreEffects]),
   ],
-  providers: [{ provide: NZ_I18N, useValue: es_ES }],
-  bootstrap: [AppComponent]
+  providers: [{provide: NZ_I18N, useValue: es_ES}],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

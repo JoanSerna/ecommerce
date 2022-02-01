@@ -9,6 +9,12 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { StoreModule } from '@ngrx/store';
+import { authFeature } from './store/auth.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/auth.effects';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 
 @NgModule({
@@ -24,6 +30,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     ReactiveFormsModule,
     NzInputModule,
     NzButtonModule,
+    NzSpinModule,
+    StoreModule.forFeature(authFeature),
+    EffectsModule.forFeature([AuthEffects]),
   ],
 })
 export class AuthModule {

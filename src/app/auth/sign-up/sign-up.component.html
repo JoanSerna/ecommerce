@@ -1,16 +1,11 @@
 <div class="container">
   <section class="sign-up">
     <nz-card nzTitle="Registro" *ngIf="signUpForm" class="sign-up__card">
-      <form nz-form [nzLayout]="'inline'" [formGroup]="signUpForm"
+      <nz-spin nzSimple *ngIf="loading$ | async" [nzSize]="'large'"></nz-spin>
+
+      <form nz-form [nzLayout]="'inline'" [formGroup]="signUpForm" *ngIf="(loading$ | async) === false"
             class="sign-up__form"
             (ngSubmit)="submitSignUpForm()">
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Por favor ingresa tu nombre!">
-            <nz-input-group nzPrefixIcon="user">
-              <input formControlName="name" nz-input placeholder="Nombre" />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
         <nz-form-item>
           <nz-form-control nzErrorTip="Por favor ingresa tu correo!">
             <nz-input-group nzPrefixIcon="user">
